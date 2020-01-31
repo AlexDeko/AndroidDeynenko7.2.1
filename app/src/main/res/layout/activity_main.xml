@@ -8,11 +8,11 @@
 
     <EditText
         android:id="@+id/editGM"
-        android:layout_width="390dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="0dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/infoSearchGM"
         android:inputType="textPersonName"
