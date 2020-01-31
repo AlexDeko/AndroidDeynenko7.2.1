@@ -12,7 +12,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
 
-    Uri uri;
+    Uri uri = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,23 +20,21 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText coordinates = findViewById(R.id.editGM);
         final String query = coordinates.getText().toString();
+
         Button btnSync = findViewById(R.id.button);
         btnSync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                if(Character.isLetter(0)){
+                if(Character.isLetter(query.charAt(0))){
                     uri = Uri.parse(getString(R.string.geoAddressGM,query));
-                    intent.setData(uri);
-                    startActivity(intent);
                 } else {
                     uri = Uri.parse(getString(R.string.geoCoordinatesGM, query));
-                    intent.setData(uri);
-                    startActivity(intent);
+                   // intent.setData(uri);
+                  //  startActivity(intent);
                 }
-
-
-
+                intent.setData(uri);
+                startActivity(intent);
             }
         });
     }

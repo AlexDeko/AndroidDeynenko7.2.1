@@ -2,6 +2,6 @@
     <string name="app_name">AndroidDeynenko7.2.1</string>
     <string name="searchGM">Ищем</string>
     <string name="infoSearchGM">Введите данные для поиска</string>
-    <string name="geoCoordinatesGM">geo:%1$s</string>
-    <string name="geoAddressGM">geo:?q=%1$s</string>
+    <string name="geoCoordinatesGM">geo:%s</string>
+    <string name="geoAddressGM">geo:?q=%s</string>
 </resources>
