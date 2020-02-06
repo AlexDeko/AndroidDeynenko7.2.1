@@ -28,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 if(Character.isLetter(query.charAt(0))){
                     uri = Uri.parse(getString(R.string.geoAddressGM,query));
+                } else if((Character.isLetter(query.charAt(0))) && query.contains("\\D")) {
+
                 } else {
                     uri = Uri.parse(getString(R.string.geoCoordinatesGM, query));
-                   // intent.setData(uri);
-                  //  startActivity(intent);
+                    // intent.setData(uri);
+                    //  startActivity(intent);
                 }
                 intent.setData(uri);
                 startActivity(intent);
