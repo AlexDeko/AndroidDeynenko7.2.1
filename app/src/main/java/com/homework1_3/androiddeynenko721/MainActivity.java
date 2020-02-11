@@ -11,33 +11,54 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-
     Uri uri = null;
+    String query;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         final EditText coordinates = findViewById(R.id.editGM);
-        final String query = coordinates.getText().toString();
-
         Button btnSync = findViewById(R.id.button);
         btnSync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                if(Character.isLetter(query.charAt(0))){
-                    uri = Uri.parse(getString(R.string.geoAddressGM,query));
-                } else if((Character.isLetter(query.charAt(0))) && query.contains("\\D")) {
-                    uri = Uri.parse(getString(R.string.geoAddressGM,query));
+                query = coordinates.getText().toString();
+
+                String target;
+                if(isLetter() || isDigit()){
+                    target = getString(R.string.geoAddressGM,query);
+                    uri = Uri.parse(target);
+                } else if(isLetter()) {
+                    target = getString(R.string.geoAddressGM,query);
+                    uri = Uri.parse(target);
                 } else {
-                    uri = Uri.parse(getString(R.string.geoCoordinatesGM, query));
-                    // intent.setData(uri);
-                    //  startActivity(intent);
+                    target = target = getString(R.string.geoCoordinatesGM, query);
+                    uri = Uri.parse(target);
                 }
                 intent.setData(uri);
                 startActivity(intent);
+
             }
         });
+    }
+
+    private boolean isLetter(){
+        for (int i = 0; i < query.length(); i += 1){
+            if(Character.isLetter(query.charAt(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isDigit(){
+        for (int i = 0; i < query.length(); i += 1){
+            if(Character.isDigit(query.charAt(i))){
+                return true;
+            }
+        }
+        return false;
     }
 }
