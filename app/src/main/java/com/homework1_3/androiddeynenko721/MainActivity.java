@@ -12,7 +12,6 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     Uri uri = null;
-    String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +23,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                query = coordinates.getText().toString();
+                String query = coordinates.getText().toString();
 
                 String target;
-                if(isLetter() || isDigit()){
+                if(isLetter(query) && isDigit(query) || isLetter(query)){
                     target = getString(R.string.geoAddressGM,query);
-                    uri = Uri.parse(target);
-                } else if(isLetter()) {
-                    target = getString(R.string.geoAddressGM,query);
-                    uri = Uri.parse(target);
                 } else {
-                    target = target = getString(R.string.geoCoordinatesGM, query);
-                    uri = Uri.parse(target);
+                    target = getString(R.string.geoCoordinatesGM, query);
                 }
+                uri = Uri.parse(target);
                 intent.setData(uri);
                 startActivity(intent);
 
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isLetter(){
+    private boolean isLetter(String query){
         for (int i = 0; i < query.length(); i += 1){
             if(Character.isLetter(query.charAt(i))){
                 return true;
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean isDigit(){
+    private boolean isDigit(String query){
         for (int i = 0; i < query.length(); i += 1){
             if(Character.isDigit(query.charAt(i))){
                 return true;
